@@ -5,6 +5,20 @@ const audio = document.getElementById("audio-player");
 
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
+//upload json
+const jsonUpload = document.getElementById("json-upload");
+
+jsonUpload.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    const loadedTemplate = JSON.parse(e.target.result);
+    Object.assign(template, loadedTemplate); // Update template dynamically
+  };
+
+  reader.readAsText(file);
+});
 
 // Template Config (imported from JSON file)
 const template = {
